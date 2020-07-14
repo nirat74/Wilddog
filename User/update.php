@@ -35,6 +35,7 @@ $result = mysqli_query($con, $sql);
             echo "</script>";
         }
 
+        mysqli_close($con);
 
 
 

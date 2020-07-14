@@ -47,15 +47,3 @@ if (isset($_GET["UserID"]) && !empty($_GET["UserID"])) {
     </html>
 
 
-<?php
-////1. เชื่อมต่อ database:
-//require_once('../connection.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
-////สร้างตัวแปรสำหรับรับค่า member_id จากไฟล์แสดงข้อมูล
-//if(isset($_POST["UserID"]) && !empty($_POST["UserID"])){
-//    //get hidden input value
-//    $id = $_POST["UserID"];
-//}
-// echo $id;
-////ลบข้อมูลออกจาก database ตาม member_id ที่ส่งมา
-//
-//?>

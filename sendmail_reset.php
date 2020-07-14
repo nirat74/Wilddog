@@ -1,20 +1,32 @@
 <?php
 session_start();
 
-require_once('connection.php');
-require_once('PHPMailer/PHPMailerAutoload.php');
+if (isset($_POST['Email'])) {
+    require_once("connection.php");
+    require_once('PHPMailer/PHPMailerAutoload.php');
+
+    $Email = $_POST['Email'];
+
+    $sql = "SELECT * FROM member 
+                  WHERE  Email='" . $Email . "'  ";
+    $result = mysqli_query($con, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_array($result);
+
+        $_SESSION["UserID"] = $row["UserID"];
+        $_SESSION["Name"] = $row["Name"];
+        $_SESSION["Surname"] = $row["Surname"];
+        $_SESSION["Phone"] = $row["Phone"];
+        $_SESSION["Email"] = $row["Email"];
+        $_SESSION["Address"] = $row["Address"];
+        $_SESSION["Status"] = $row["Status"];
 
 
-$sql = "SELECT * FROM member WHERE Email = '" . trim($_POST['Email']) . "' ";
-$objQuery = mysqli_query($con, $sql);
-$objResult = mysqli_fetch_array($objQuery);
-if (mysqli_num_rows($objResult) == 1) {
-    $row = mysqli_fetch_array($objResult);
 
-    $name = $row["Name"];
-    $lname = $row["Surname"];
+if ($result) {
 
-    $Uid = mysqli_insert_id($con);
+    $Uid = $_SESSION["UserID"];
 
 
     $mail = new PHPMailer();
@@ -30,8 +42,8 @@ if (mysqli_num_rows($objResult) == 1) {
     $mail->SetFrom = ('no-reply@domaintest.com');
     $mail->FromName = "Wilddog";
     $mail->Subject = "การตั้งค่ารหัสผ่านใหม่ : Wilddog";
-    $mail->Body = "สวัสดีคุณ " . $name . " " . $lname . "<br>\n====================================<br>\n\nระบบได้รับคำร้องเพื่อขอเปลี่ยนแปลงรหัสผ่านของคุณแล้ว\nกรุณาคลิกลิงก์ด้านล่าง เพื่อตั้งค่ารหัสผ่านใหม่<br>\n====================================<br>\n\n http://www.localhost/wilddog/reset.php?uid=" . $Uid . "<br>";
-    $mail->AddAddress($_POST["Email"],  $name );
+    $mail->Body = "สวัสดีคุณ " . $_SESSION["Name"] . " " . $_SESSION["Surname"] . "<br>\n====================================<br>\n\nระบบได้รับคำร้องเพื่อขอเปลี่ยนแปลงรหัสผ่านของคุณแล้ว\nกรุณาคลิกลิงก์ด้านล่าง เพื่อตั้งค่ารหัสผ่านใหม่<br>\n====================================<br>\n\n http://www.localhost/wilddog/resetpass.php?uid=" . $Uid . "<br>";
+    $mail->AddAddress($_SESSION["Email"] ,  $_SESSION["Name"] );
 
 
     //ตรวจสอบว่าส่งผ่านหรือไม่
@@ -44,11 +56,12 @@ if (mysqli_num_rows($objResult) == 1) {
         echo "alert('ส่งอีเมลยืนยันไม่สำเร็จ');  window.history.back();";
         echo "</script>";
     }
-} else {
-    header("location: ../error.php");
-    exit();
 }
-
-
+} else {
+    echo "<script language=\"JavaScript\">";
+    echo "alert('ส่งอีเมลยืนยันไม่สำเร็จ');  window.history.back();";
+    echo "</script>";
+    }
+}
 mysqli_close($con);
 ?>

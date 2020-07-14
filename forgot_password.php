@@ -30,7 +30,7 @@
         <form name="form-forgot" method="post" action="sendmail_reset.php">
             <h3>Forgot Password Form</h3>
             <div class="form-wrapper">
-                <input type="text" name="Email" placeholder="Email Address" class="form-control">
+                <input type="text" name="Email" id="Email" placeholder="Email Address" class="form-control">
                 <i class="zmdi zmdi-email"></i>
             </div>
 
@@ -38,7 +38,6 @@
                 <i class="zmdi zmdi-arrow-right"></i>
             </button>
         </form>
-
         <a href="index.php">Login</a>
     </div>
 </div>
