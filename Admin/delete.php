@@ -1,26 +1,26 @@
 <?php
-if(isset($_GET["UserID"]) && !empty($_GET["UserID"])) {
+if (isset($_GET["UserID"]) && !empty($_GET["UserID"])) {
     require_once '../connection.php';
 
     $id = $_GET["UserID"];
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style>
-        .wrapper {
-            width: 500px;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delete Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+        <style>
+            .wrapper {
+                width: 500px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -31,7 +31,7 @@ if(isset($_GET["UserID"]) && !empty($_GET["UserID"])) {
                     <form action="delete_user.php" method="post">
                         <div class="alert alert-danger fade in">
                             <p>ต้องการลบผู้ใช้งานออกหรือไม่?</p>
-                           
+
                             <p>
                                 <input type="hidden" name="UserID" value="<?php echo $id; ?>">
                                 <input type="submit" value="Yes" class="btn btn-danger">
@@ -43,9 +43,8 @@ if(isset($_GET["UserID"]) && !empty($_GET["UserID"])) {
             </div>
         </div>
     </div>
-</body>
-</html>
-
+    </body>
+    </html>
 
 
 <?php

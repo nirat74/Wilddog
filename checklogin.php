@@ -39,9 +39,9 @@ if (isset($_POST['Email'])) {
 } else {
 
     echo "<script>";
-        echo "alert(\" Email หรือ  Password ไม่ถูกต้อง \n กรุณากรอกใหม่\");";
-        echo "window.history.back()";
-        echo "</script>"; //user & password incorrect back to login again
+    echo "alert(\" Email หรือ  Password ไม่ถูกต้อง \n กรุณากรอกใหม่\");";
+    echo "window.history.back()";
+    echo "</script>"; //user & password incorrect back to login again
 
 }
 ?>

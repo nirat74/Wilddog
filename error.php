@@ -23,7 +23,7 @@
                 <div class="alert alert-danger fade in">
                     <p>
                         Sorry you made invalid Request
-                        <a href="manage_user.php" class="alret-link">Go Back</a>
+                        <a href="index.php" class="alret-link">Go Back</a>
                         and try again.
                     </p>
                 </div>
